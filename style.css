@@ -1,0 +1,38 @@
+body{
+    background-color: #F2F3F4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.main-div{
+    display: flex;
+    width: 30%;
+    height: 5%;
+    background-color: #C9C8C7;
+    align-items: center;
+    border-radius: 5px;
+    flex-direction: row;
+}
+
+.lupa{
+    width: 36px;
+    height: 36px;
+}
+
+.div-search{
+display: flex;
+background-color: #949392;
+border-radius: 5px;
+width: 8%;
+height: 100%;
+justify-content: center;
+align-items: center;
+}
+
+.input-text{
+    background-color: #C9C8C7 ;
+    margin-right: 5%;
+    border: none;
+}
