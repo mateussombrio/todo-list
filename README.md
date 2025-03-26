@@ -1,0 +1,1 @@
+The idea is to create a TODO list using HTML, CSS and JS, but without using frameworks. 
