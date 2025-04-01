@@ -18,17 +18,21 @@ function toggleTaskDiv() {
   }
 }
 
-function createTask(taskText) {
+function createTaskELement(taskText) {
   const taskIndex = localStorage.length;
   localStorage.setItem(`task${taskIndex}`, taskText);
+  createTask(taskText);
+}
 
-  const taskDiv = document.createElement("div");
-  taskDiv.className = "task-item";
+function createTask(taskText) {
+  const cardDiv = document.createElement("div");
+  cardDiv.className = "div_cards";
 
   const checkboxDiv = document.createElement("div");
-  
-  const taskTextDiv = document.createElement("div");
-  taskTextDiv.className = "div_value";
+  checkboxDiv.className = "div_checkbox";
+
+  const valueDiv = document.createElement("div");
+  valueDiv.className = "div_value";
 
   const checkboxImage = document.createElement("img");
   checkboxImage.className = "img_checkbox";
@@ -38,18 +42,21 @@ function createTask(taskText) {
   taskParagraph.textContent = taskText;
 
   checkboxDiv.appendChild(checkboxImage);
-  taskTextDiv.appendChild(taskParagraph);
-  taskDiv.appendChild(checkboxDiv);
-  taskDiv.appendChild(taskTextDiv);
+  valueDiv.appendChild(taskParagraph);
+  cardDiv.appendChild(checkboxDiv);
+  cardDiv.appendChild(valueDiv);
+  divTask.appendChild(cardDiv);
 
-  divCheckbox.appendChild(taskDiv);
+  checkboxImage.addEventListener("click", function () {
+    taskDone(checkboxImage, taskParagraph);
+  });
 }
 
 function handleEnterKey(event) {
   if (event.key === "Enter") {
     const taskText = inputText.value.trim();
     if (taskText) {
-      createTask(taskText);
+      createTaskELement(taskText);
       inputText.value = "";
     }
   }
@@ -59,12 +66,23 @@ function clearLocalStorage() {
   localStorage.clear();
 }
 
-function taskDone() {
-  if (checkboxImage.src == urlCheckboxNotDone) {
+function taskDone(checkboxImage, taskParagraph) {
+  if (checkboxImage.src.endsWith(urlCheckboxNotDone)) {
     checkboxImage.src = urlCheckboxDone;
     taskParagraph.style.textDecoration = "line-through";
   } else {
     checkboxImage.src = urlCheckboxNotDone;
+    taskParagraph.style.textDecoration = "none";
+  }
+}
+
+function loadTask() {
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key.startsWith("task")) {
+      const getTask = localStorage.getItem(key);
+      createTask(taskText);
+    }
   }
 }
 
@@ -72,4 +90,5 @@ function taskDone() {
 divTaskList.addEventListener("click", toggleTaskDiv);
 inputText.addEventListener("keypress", handleEnterKey);
 clear.addEventListener("click", clearLocalStorage);
-taskDiv.addEventListener("click", taskDone);
+
+loadTask();

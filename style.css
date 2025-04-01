@@ -49,6 +49,7 @@ body {
   margin-left: 2.5%;
   flex-direction: column;
   height: 20%;
+  overflow: auto;
 }
 
 .lupa {
@@ -90,17 +91,20 @@ body {
   display: flex;
   flex-direction: row;
   width: 100%;
-  overflow: auto;
 }
 
 .div_checkbox {
+  display: flex;
   margin-left: 5px;
-  width: 50%;
+  width: 10%;
+  justify-content: center;
+  align-items: center;
 }
 
 .div_value {
   width: 90%;
-  margin-left: 5px;
+  display: flex;
+  align-items: center;
 }
 
 .img_checkbox {
@@ -111,10 +115,4 @@ body {
 .img_checkbox:hover{
   transition: transform 0.3s ease;
   transform: scale(1.1);
-}
-
-.task-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
