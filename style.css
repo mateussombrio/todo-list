@@ -45,9 +45,10 @@ body {
 .div_tasks {
   background-color: #d3d3d3;
   display: none;
-  overflow: auto;
   width: 27.5%;
   margin-left: 2.5%;
+  flex-direction: column;
+  height: 20%;
 }
 
 .lupa {
@@ -74,7 +75,7 @@ body {
   height: 24px;
 }
 
-.arrows:hover{
+.arrows:hover {
   transition: transform 0.3s ease;
   transform: scale(1.3);
 }
@@ -85,22 +86,35 @@ body {
   margin-right: 2%;
 }
 
-.div_cards{
+.div_cards {
   display: flex;
   flex-direction: row;
   width: 100%;
+  overflow: auto;
 }
 
-.div_checkbox{
-  display: flex;
-  width: 10%;
-  justify-content: center;
-  align-items: center;
+.div_checkbox {
+  margin-left: 5px;
+  width: 50%;
 }
 
-.div_values{
+.div_value {
+  width: 90%;
+  margin-left: 5px;
+}
+
+.img_checkbox {
+  width: 24px;
+  height: 24px;
+}
+
+.img_checkbox:hover{
+  transition: transform 0.3s ease;
+  transform: scale(1.1);
+}
+
+.task-item {
   display: flex;
-  width: 100%;
   justify-content: center;
   align-items: center;
 }
