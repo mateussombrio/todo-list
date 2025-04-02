@@ -45,12 +45,13 @@ body {
 .div_tasks {
   background-color: #d3d3d3;
   display: none;
-  width: 27.5%;
-  margin-left: 2.5%;
+  width: 30%;
   flex-direction: column;
   height: 20%;
   overflow: auto;
+  border-radius: 5px;
 }
+
 
 .lupa {
   width: 36px;
@@ -91,19 +92,18 @@ body {
   display: flex;
   flex-direction: row;
   width: 100%;
-  border-bottom: 0.5px solid;
+  border-bottom: 1px solid;
 }
 
 .div_checkbox {
   display: flex;
-  margin-left: 5px;
   width: 10%;
   justify-content: center;
   align-items: center;
 }
 
 .div_value {
-  width: 90%;
+  width: 85%;
   display: flex;
   align-items: center;
 }
@@ -113,7 +113,25 @@ body {
   height: 24px;
 }
 
-.img_checkbox:hover{
+.img_checkbox:hover {
+  transition: transform 0.3s ease;
+  transform: scale(1.1);
+}
+
+.garbage {
+  display: flex;
+  width: 5%;
+  justify-content: center;
+  align-items: center;
+}
+
+.img_garbage {
+  width: 24px;
+  height: 24px;
+  margin-right: 50%;
+}
+
+.img_garbage:hover {
   transition: transform 0.3s ease;
   transform: scale(1.1);
 }

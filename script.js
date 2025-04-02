@@ -7,6 +7,8 @@ const divValue = document.querySelector(".div_value");
 const urlCheckboxDone = "assets/done.png";
 const urlCheckboxNotDone = "assets/not-done.png";
 const clear = document.querySelector(".clear");
+const img_garbage = "assets/garbage.png";
+const searchDiv = document.querySelector('.div-search')
 
 function toggleTaskDiv() {
   if (divTask.style.display === "none" || divTask.style.display === "") {
@@ -18,13 +20,13 @@ function toggleTaskDiv() {
   }
 }
 
-function createTaskELement(taskText) {
+function createTaskElement(taskText) {
   const taskIndex = localStorage.length;
   localStorage.setItem(`task${taskIndex}`, taskText);
-  createTask(taskText);
+  createTask(taskText, taskIndex);
 }
 
-function createTask(taskText) {
+function createTask(taskText, taskIndex) {
   const cardDiv = document.createElement("div");
   cardDiv.className = "div_cards";
 
@@ -33,6 +35,13 @@ function createTask(taskText) {
 
   const valueDiv = document.createElement("div");
   valueDiv.className = "div_value";
+
+  const garbageDiv = document.createElement("div");
+  garbageDiv.className = "garbage";
+
+  const garbageImage = document.createElement("img");
+  garbageImage.src = img_garbage;
+  garbageImage.className = "img_garbage";
 
   const checkboxImage = document.createElement("img");
   checkboxImage.className = "img_checkbox";
@@ -43,27 +52,31 @@ function createTask(taskText) {
 
   checkboxDiv.appendChild(checkboxImage);
   valueDiv.appendChild(taskParagraph);
+  garbageDiv.appendChild(garbageImage);
   cardDiv.appendChild(checkboxDiv);
   cardDiv.appendChild(valueDiv);
+  cardDiv.appendChild(garbageDiv);
   divTask.appendChild(cardDiv);
 
   checkboxImage.addEventListener("click", function () {
     taskDone(checkboxImage, taskParagraph);
   });
+  garbageDiv.addEventListener("click", function () {
+    removeTask(cardDiv, taskIndex);
+  });
+  searchDiv.addEventListener('click', function (){
+    search(cardDiv, taskText)
+  })
 }
 
 function handleEnterKey(event) {
   if (event.key === "Enter") {
     const taskText = inputText.value.trim();
     if (taskText) {
-      createTaskELement(taskText);
+      createTaskElement(taskText);
       inputText.value = "";
     }
   }
-}
-
-function clearLocalStorage() {
-  localStorage.clear();
 }
 
 function taskDone(checkboxImage, taskParagraph) {
@@ -83,14 +96,28 @@ function loadTask() {
     const key = localStorage.key(i);
     if (key.startsWith("task")) {
       const taskText = localStorage.getItem(key);
-      createTask(taskText);
+      const taskIndex = parseInt(key.replace("task", ""));
+      createTask(taskText, taskIndex);
     }
   }
 }
 
+function removeTask(cardDiv, taskIndex) {
+  cardDiv.remove();
+  localStorage.removeItem(`task${taskIndex}`);
+}
+
+function search(cardDiv, taskText){
+  for (taskText of cardDiv){
+    if (taskText == inputText.value){
+      createTask(cardDiv,taskText)
+    }
+  }
+}
+
+
 // Adiciona os event listeners
 divTaskList.addEventListener("click", toggleTaskDiv);
 inputText.addEventListener("keypress", handleEnterKey);
-clear.addEventListener("click", clearLocalStorage);
 
 loadTask();
