@@ -70,9 +70,11 @@ function taskDone(checkboxImage, taskParagraph) {
   if (checkboxImage.src.endsWith(urlCheckboxNotDone)) {
     checkboxImage.src = urlCheckboxDone;
     taskParagraph.style.textDecoration = "line-through";
+    taskParagraph.style.opacity = "50%";
   } else {
     checkboxImage.src = urlCheckboxNotDone;
     taskParagraph.style.textDecoration = "none";
+    taskParagraph.style.opacity = "100%";
   }
 }
 
@@ -80,7 +82,7 @@ function loadTask() {
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
     if (key.startsWith("task")) {
-      const getTask = localStorage.getItem(key);
+      const taskText = localStorage.getItem(key);
       createTask(taskText);
     }
   }
