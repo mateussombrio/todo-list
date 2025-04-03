@@ -8,7 +8,7 @@ const urlCheckboxDone = "assets/done.png";
 const urlCheckboxNotDone = "assets/not-done.png";
 const clear = document.querySelector(".clear");
 const img_garbage = "assets/garbage.png";
-const searchDiv = document.querySelector('.div-search')
+const searchDiv = document.querySelector(".div-search");
 
 function toggleTaskDiv() {
   if (divTask.style.display === "none" || divTask.style.display === "") {
@@ -64,9 +64,6 @@ function createTask(taskText, taskIndex) {
   garbageDiv.addEventListener("click", function () {
     removeTask(cardDiv, taskIndex);
   });
-  searchDiv.addEventListener('click', function (){
-    search(cardDiv, taskText)
-  })
 }
 
 function handleEnterKey(event) {
@@ -107,17 +104,24 @@ function removeTask(cardDiv, taskIndex) {
   localStorage.removeItem(`task${taskIndex}`);
 }
 
-function search(cardDiv, taskText){
-  for (taskText of cardDiv){
-    if (taskText == inputText.value){
-      createTask(cardDiv,taskText)
+function search() {
+  const searchText = inputText.value.trim().toLowerCase();
+  console.log(searchText);
+  const allCardsDivs = divTask.querySelectorAll(".div_cards");
+  allCardsDivs.forEach((cardDiv) => {
+    const taskText = cardDiv
+      .querySelector(".div_value p")
+      .textContent.toLowerCase();
+    if (taskText.includes(searchText)) {
+      cardDiv.style.display = "flex";
+    } else {
+      cardDiv.style.display = "none";
     }
-  }
+  });
 }
 
-
-// Adiciona os event listeners
 divTaskList.addEventListener("click", toggleTaskDiv);
 inputText.addEventListener("keypress", handleEnterKey);
+searchDiv.addEventListener("click", search);
 
 loadTask();
