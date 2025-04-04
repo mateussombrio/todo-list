@@ -2,9 +2,11 @@
 The idea is to create a TODO list using HTML, CSS and JS, but without using frameworks.
 
 # Update
-I created a simple TODO list with HTML, CSS and JS. It have a search, enter and delete task and a checkbox that says if the task if completed or not. The project took me some time to be concluded, because there was topics that I was not so familiar with i.e (functions calling other functions so I could use their local variables, DOM manipulation and the logic behind constructin the features).
+I created a simple TODO list using HTML, CSS, and JavaScript. It has a search function, the ability to add and delete tasks, and a checkbox to indicate whether a task is completed or not.
 
-Despite been a simple project, I learned a lot.
+The project took me some time to complete because there were topics I wasn't very familiar with, such as functions calling other functions to use their local variables, DOM manipulation, and the logic behind constructing the features.
+
+Despite being a simple project, I learned a lot.
 
 # Design
 ![Captura de tela 2025-04-03 111132](https://github.com/user-attachments/assets/362e190f-1a90-4c33-9760-d1b901bd18e9)
